@@ -34,7 +34,6 @@ export default function Layout({ children }: LayoutProps) {
     <div className="layout">
       <header className="main-header">
         <div className="header-top">
-          <div></div>
           <button 
             onClick={toggleTheme} 
             className="theme-toggle"
