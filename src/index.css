@@ -18,8 +18,68 @@
   --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
+/* Light Mode */
+[data-theme="light"] {
+  --bg-primary: #f8f9fa;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f3f4f6;
+  --accent-primary: #8b5cf6;
+  --accent-secondary: #a855f7;
+  --accent-bright: #ec4899;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --text-tertiary: #6b7280;
+  --border-color: #e5e7eb;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
 * {
   box-sizing: border-box;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- Animations --- */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInForm {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 body {
@@ -29,6 +89,7 @@ body {
   color: var(--text-primary);
   min-height: 100vh;
   line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -78,6 +139,7 @@ form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
+  animation: slideInForm 0.6s ease-out;
 }
 
 form h3 {
@@ -195,7 +257,17 @@ button[type="submit"]:active {
   display: flex;
   flex-direction: column;
   height: 100%;
+  animation: slideIn 0.5s ease-out forwards;
+  opacity: 0;
 }
+
+.song-card:nth-child(1) { animation-delay: 0.05s; }
+.song-card:nth-child(2) { animation-delay: 0.1s; }
+.song-card:nth-child(3) { animation-delay: 0.15s; }
+.song-card:nth-child(4) { animation-delay: 0.2s; }
+.song-card:nth-child(5) { animation-delay: 0.25s; }
+.song-card:nth-child(6) { animation-delay: 0.3s; }
+.song-card:nth-child(n+7) { animation-delay: 0.35s; }
 
 .song-card:hover {
   transform: translateY(-8px);
@@ -315,6 +387,45 @@ button[type="submit"]:active {
   margin-bottom: 60px;
   padding-bottom: 40px;
   border-bottom: 1px solid var(--border-color);
+  animation: fadeIn 0.5s ease-out;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.theme-toggle {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-primary);
+}
+
+.theme-toggle:hover {
+  background: var(--bg-tertiary);
+  transform: scale(1.05);
+  border-color: var(--accent-primary);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+.theme-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .brand {
